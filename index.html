@@ -4,69 +4,144 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Projects by smanoharan</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
-    <div class="wrapper">
+
       <header>
-        <h1 class="header">Projects</h1>
-        <p class="header">Siva Manoharan</p>
-
-
-
-        <ul>
-          <li><a class="buttons github" href="https://github.com/smanoharan">GitHub Profile</a></li>
-        </ul>
-
+        <h1>Projects</h1>
+        <p>Siva Manoharan</p>
       </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/smanoharan" class="button fork"><strong>View On GitHub</strong></a>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
       <section>
         <h1>
-<a name="under-construction" class="anchor" href="#under-construction"><span class="octicon octicon-link"></span></a>Under Construction.</h1>
+<a name="open-source-projects" class="anchor" href="#open-source-projects"><span class="octicon octicon-link"></span></a>Open Source Projects</h1>
 
-<h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<p>All projects are licensed under <a href="http://www.gnu.org/licenses/lgpl.html">LGPL</a> unless otherwise stated.</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<hr><h2>
+<a name="ray-tracer---2013" class="anchor" href="#ray-tracer---2013"><span class="octicon octicon-link"></span></a>Ray Tracer - 2013</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Individual side project.
+Source: <a href="http://github.com/smanoharan/go-raytracer/">http://github.com/smanoharan/go-raytracer/</a></p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>A simple RayTracer using the BlinnPhong shader, implemented in Go.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>Supported features:</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li>Light sources: point and directional</li>
+<li>Lighting/Material properties: Diffuse colour, Specular colour and Shininess </li>
+<li>Primitives: Sphere only</li>
+<li>Soft shadows</li>
+<li>Anti-aliasing</li>
+</ul><h2>
+<a name="go-img-proc---2013" class="anchor" href="#go-img-proc---2013"><span class="octicon octicon-link"></span></a>Go-Img-Proc - 2013</h2>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>Individual side project.
+Under construction. Source: <a href="http://github.com/smanoharan/go-img-proc/">http://github.com/smanoharan/go-img-proc/</a></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Basic Image Processing library, implemented in Go.</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>Currently supports:</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li>Mean Filtering</li>
+<li>Gaussian Filtering</li>
+<li>Laplacians (3 variants)</li>
+</ul><h2>
+<a name="adaprop---2012--2013" class="anchor" href="#adaprop---2012--2013"><span class="octicon octicon-link"></span></a>AdaProp - 2012--2013</h2>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>Project developed as part of Honours Project (COMP520: Report of an Investigation).
+Written in Java, using the <a href="http://www.cs.waikato.ac.nz/ml/weka/">WEKA</a> framework.
+Source: <a href="http://github.com/smanoharan/adaprop/">http://github.com/smanoharan/adaprop/</a></p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>MI (Multi-instance) learning is machine learning over MI data, where the instances are grouped together into labelled bags. An approach to handling MI data is propositionalisation, where each bag is converted into single feature vector, which can then be used with standard learning algorithms such as SVMs and Neural Networks.</p>
+
+<p>The aim of this project is to explore adaptive propositionalisation, where the propositionalisation process adapts to the specific single instance learner being used. Application of this technique to the image classification problem have also been considered.</p>
+
+<h2>
+<a name="turing-machine-verifier---2012" class="anchor" href="#turing-machine-verifier---2012"><span class="octicon octicon-link"></span></a>Turing Machine Verifier - 2012</h2>
+
+<p>Individual side project.
+Source: <a href="http://github.com/smanoharan/235-lab-verifier/">http://github.com/smanoharan/235-lab-verifier/</a></p>
+
+<p>Web based automatic verifier for the Turing Machines in COMP235 Labs.
+Written in Java using the <a href="http://www.playframework.com/">Play Framework</a>.
+Currently hosted at: <a href="http://comp235labs.herokuapp.com">http://comp235labs.herokuapp.com</a></p>
+
+<p>Supported features:</p>
+
+<ul>
+<li>Allows testing each machine with an arbitrary number of test inputs.</li>
+<li>Checks for Non-Determinism, Tape-OutOfBound errors and Alphabet constraints.</li>
+<li>Shows an overall summary of results.</li>
+</ul><h2>
+<a name="kinect-sign-language-interpreter---2011" class="anchor" href="#kinect-sign-language-interpreter---2011"><span class="octicon octicon-link"></span></a>Kinect Sign Language Interpreter - 2011</h2>
+
+<p>A (group) project, developed as part of COMP314: Software Engineering Project.
+Source: <a href="http://github.com/smanoharan/314Kinect/">http://github.com/smanoharan/314Kinect/</a></p>
+
+<p>Use Case:
+1. Instructors train any sign (or any arbitrary gesture) by performing the sign a few (5 or so) times to the software (in record mode).
+2. The software then "learns" the sign (by modelling the sign via Hidden Markov Models) and saves it to disk.
+3. A student performs the learned sign to the software (in evaluate mode).
+4. The software gives feedback (a score out of 10) to the student, based on how well the student performance matched that of the instructor.</p>
+
+<p>Authors:</p>
+
+<ul>
+<li>Sidd Arora (<a href="https://github.com/siddarora" class="user-mention">@siddarora</a>)</li>
+<li>William Lam (<a href="https://github.com/davanish" class="user-mention">@davanish</a>)</li>
+<li>Siva Manoharan (<a href="https://github.com/smanoharan" class="user-mention">@smanoharan</a>)</li>
+<li>Mark Will (<a href="https://github.com/maw41" class="user-mention">@maw41</a>)</li>
+</ul><h2>
+<a name="fix-set-quasi-order-generator---2010----2011" class="anchor" href="#fix-set-quasi-order-generator---2010----2011"><span class="octicon octicon-link"></span></a>Fix Set Quasi Order Generator - 2010 -- 2011</h2>
+
+<p>Project developed for 2011/2012 summer research work.
+Source: <a href="https://github.com/smanoharan/fix-set-quasi-order-generator/">https://github.com/smanoharan/fix-set-quasi-order-generator/</a></p>
+
+<p>A software package for generating all fix-orders of any given group (the abstract algebraic structure) and visualising the lattice of all fix-orders as a Hasse diagram. </p>
+
+<p>Results are hosted at: <a href="http://www.math.waikato.ac.nz/%7Estokes/data/">http://www.math.waikato.ac.nz/~stokes/data/</a></p>
+
+<h2>
+<a name="top-gear-electrified---2010" class="anchor" href="#top-gear-electrified---2010"><span class="octicon octicon-link"></span></a>Top Gear Electrified - 2010</h2>
+
+<p>A (group) project, developed as part of COMP242: Software Engineering Process.
+Source: TODO</p>
+
+<h2>
+<a name="tactical-wargame---2009" class="anchor" href="#tactical-wargame---2009"><span class="octicon octicon-link"></span></a>Tactical Wargame - 2009</h2>
+
+<p>A 2-player turn-based strategy game.
+Source: Download from TODO</p>
+
+<p>TODO</p>
       </section>
       <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    
   </body>
 </html>
