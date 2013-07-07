@@ -3,213 +3,402 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Projects by smanoharan</title>
+    <title>Siva Manoharan - Projects</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/magnific-popup.css"> 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+	<script src="javascripts/jquery.magnific-popup.min.js"></script>
     <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+	<style>
+		section {
+			width: 690px;
+		}
+		#banner { margin-right: -475px; }
+		h1.entry {
+			text-align: center;
+			background: #f0f0f4;
+			padding-top: 10px;
+			padding-bottom: 5px;
+			margin-bottom: 30px;
+		}
+		hr {
+			clear: both;
+			margin-top: 10px;
+			margin-bottom: 30px;
+		}
+		div.image {
+			float: left;
+			width: 30%;
+		}
+		div.text {
+			float: right;
+			width: 65%;
+			padding-right: 20px;
+		}
+		div.image img {
+			border: black;
+		}
+	</style>
+		
+	<script>
+		$(document).ready(function() {
+			$('img.popup').wrap(function() {
+				var aElem = document.createElement("a");
+				aElem.className = "image-popup-no-margins";
+				aElem.href = this.src.replace("/thumb/", "/full/");
+				aElem.title = this.alt;
+				return aElem;
+			});
+			$('a.image-popup-no-margins').magnificPopup({
+				type: 'image',
+				closeOnContentClick: true,
+				closeBtnInside: false,
+				fixedContentPos: true,
+				mainClass: 'mfp-with-zoom', // class to remove default margin from left and right side
+				image: {
+					verticalFit: true
+				},
+				zoom: {
+					enabled: true,
+					duration: 300 // don't forget to change the duration also in CSS
+				}
+			});
+		});
+	</script>
+	
   </head>
-  <body>
+  <body onload=>
 
-      <header>
-        <h1>Projects</h1>
-        <p>Siva Manoharan</p>
-      </header>
+	<header>
+		<h1>Projects</h1>
+		<p>Siva Manoharan</p>
+	</header>
 
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/smanoharan" class="button fork"><strong>View On GitHub</strong></a>
-      </div><!-- end banner -->
+	<div id="banner">
+		<span id="logo"></span>
+		<a href="https://github.com/smanoharan" class="button fork">
+			<strong>View On GitHub</strong>
+		</a>
+	</div>
 
     <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <p>All projects are licensed under <a href="http://www.gnu.org/licenses/lgpl.html">LGPL</a> unless otherwise stated.</p>
+		<nav>
+			<ul></ul>
+			<small>Hosted on GitHub Pages <br/> Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small>
+		</nav>
+		
+		<section>        
+	  
+		<h1 class="entry">
+			<a name="2013" class="anchor" href="#2013"><span class="octicon octicon-link"></span></a>
+			2013
+		</h1>
+					
+		<div class="entry">
+			<h2>
+				<a name="ray-tracer" class="anchor" href="#ray-tracer"><span class="octicon octicon-link"></span></a>
+				Ray Tracer
+			</h2>
+			<p><strong>Source:</strong> <a href="http://github.com/smanoharan/go-raytracer/">http://github.com/smanoharan/go-raytracer/</a></p>
+			<div class="image">
+				<img class="popup" src="images/thumb/under-construction.png?raw=true">
+			</div>	
+			<div class="text">			
+				<p>
+					A simple RayTracer using the BlinnPhong shader, implemented in Go. 
+				</p>
+				<p>
+					An individual side project, built for learning how Ray Tracers work.
+				</p>
+				<p><strong>Supported features:</strong></p>
+				<ul>
+					<li>Light sources: point and directional</li>
+					<li>Lighting/Material properties: Diffuse colour, Specular colour and Shininess </li>
+					<li>Primitives: Sphere only</li>
+					<li>Soft shadows</li>
+					<li>Anti-aliasing</li>
+				</ul>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<div class="entry">
+			<h2>
+				<a name="image-processing-library" class="anchor" href="#image-processing-library"><span class="octicon octicon-link"></span></a>
+				Image Processing Library
+			</h2>
+			<p><strong>Source:</strong> <a href="http://github.com/smanoharan/go-img-proc/">http://github.com/smanoharan/go-img-proc/</a></p>
+			<div class="image">
+				<img class="popup" src="images/thumb/under-construction.png?raw=true">
+			</div>	
+			<div class="text">
+			<p>
+				Basic Image Processing library, implemented in Go. 
+			</p>
+			<p>
+				An individual side project, under construction, developed for learning Go and Image Processing.
+			</p>
+			<p><strong>Currently supports:</strong></p>
+			<ul>
+				<li>Mean Filtering</li>
+				<li>Gaussian Filtering</li>
+				<li>Laplacians (3 variants)</li>
+			</ul>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<h1 class="entry">
+			<a name="2012" class="anchor" href="#2012"><span class="octicon octicon-link"></span></a>
+			2012
+		</h1>
+		
+		<div class="entry">
+			<h2>
+				<a name="adaprop" class="anchor" href="#adaprop"><span class="octicon octicon-link"></span></a>
+				AdaProp
+			</h2>
+			<p><strong>Source:</strong> <a href="http://github.com/smanoharan/adaprop/">http://github.com/smanoharan/adaprop/</a></p>
+			<div class="image">
+				<img class="popup" src="images/thumb/adaprop-chart.jpg?raw=true">
+				<img class="popup" src="images/thumb/adaprop-weka.png?raw=true">
+			</div>	
+			<div class="text">
+				<p>
+					A project developed as part of Honours Project (COMP520: Report of an Investigation).
+					Written in Java, using the <a href="http://www.cs.waikato.ac.nz/ml/weka/">WEKA</a> framework.
+				</p>
 
-<hr><h1>
-<a name="2013" class="anchor" href="#2013"><span class="octicon octicon-link"></span></a>2013</h1>
-
-<div height="36pt">
-</div>
-
-<h2>
-<a name="ray-tracer" class="anchor" href="#ray-tracer"><span class="octicon octicon-link"></span></a>Ray Tracer</h2>
-
-<p><strong>Source:</strong> <a href="http://github.com/smanoharan/go-raytracer/">http://github.com/smanoharan/go-raytracer/</a></p>
-
-<p>A simple RayTracer using the BlinnPhong shader, implemented in Go. 
-An individual side project, built for learning how Ray Tracers work.</p>
-
-<p><strong>Supported features:</strong></p>
-
-<ul>
-<li>Light sources: point and directional</li>
-<li>Lighting/Material properties: Diffuse colour, Specular colour and Shininess </li>
-<li>Primitives: Sphere only</li>
-<li>Soft shadows</li>
-<li>Anti-aliasing</li>
-</ul><p></p>
-
-<h2>
-<a name="image-processing-library" class="anchor" href="#image-processing-library"><span class="octicon octicon-link"></span></a>Image Processing Library</h2>
-
-<p><strong>Source:</strong> <a href="http://github.com/smanoharan/go-img-proc/">http://github.com/smanoharan/go-img-proc/</a></p>
-
-<p>Basic Image Processing library, implemented in Go. 
-An individual side project, under construction, developed for learning Go and Image Processing.</p>
-
-<p><strong>Currently supports:</strong></p>
-
-<ul>
-<li>Mean Filtering</li>
-<li>Gaussian Filtering</li>
-<li>Laplacians (3 variants)</li>
-</ul><hr><h1>
-<a name="2012" class="anchor" href="#2012"><span class="octicon octicon-link"></span></a>2012</h1>
-
-<p></p>
-
-<h2>
-<a name="adaprop" class="anchor" href="#adaprop"><span class="octicon octicon-link"></span></a>AdaProp</h2>
-
-<p><strong>Source:</strong> <a href="http://github.com/smanoharan/adaprop/">http://github.com/smanoharan/adaprop/</a></p>
-
-<p>A project developed as part of Honours Project (COMP520: Report of an Investigation).
-Written in Java, using the <a href="http://www.cs.waikato.ac.nz/ml/weka/">WEKA</a> framework.</p>
-
-<p>MI (Multi-instance) learning is machine learning over MI data, where the instances are grouped together into labelled bags. An approach to handling MI data is propositionalisation, where each bag is converted into single feature vector, which can then be used with standard learning algorithms such as SVMs and Neural Networks.</p>
-
-<p>The aim of this project is to explore adaptive propositionalisation, where the propositionalisation process adapts to the specific single instance learner being used. Application of this technique to the image classification problem have also been considered.</p>
-
-<p></p>
-
-<h2>
-<a name="turing-machine-verifier" class="anchor" href="#turing-machine-verifier"><span class="octicon octicon-link"></span></a>Turing Machine Verifier</h2>
-
-<p><strong>Source:</strong> <a href="http://github.com/smanoharan/235-lab-verifier/">http://github.com/smanoharan/235-lab-verifier/</a><br><strong>Currently hosted at:</strong> <a href="http://comp235labs.herokuapp.com">http://comp235labs.herokuapp.com</a>  </p>
-
-<p><img align="left" src="http://raw.github.com/smanoharan/smanoharan.github.io/master/images/thumb/verify-start.png"><img align="left" src="http://raw.github.com/smanoharan/smanoharan.github.io/master/images/thumb/verify-result.png"></p>
-
-<p>An online automatic verifier for the Turing Machines in COMP235 Labs.
-Written in Java using the <a href="http://www.playframework.com/">Play Framework</a>.
-Individual side project, developed for use by the students of COMP235: Logic and Computation.</p>
-
-<p><strong>Supported features:</strong></p>
-
-<ul>
-<li>Allows testing each machine with an arbitrary number of test inputs.</li>
-<li>Checks for Non-Determinism, Tape-OutOfBound errors and Alphabet constraints.</li>
-<li>Shows an overall summary of results.</li>
-</ul><hr><h1>
-<a name="2011" class="anchor" href="#2011"><span class="octicon octicon-link"></span></a>2011</h1>
-
-<p></p>
-
-<h2>
-<a name="fix-set-quasi-order-generator" class="anchor" href="#fix-set-quasi-order-generator"><span class="octicon octicon-link"></span></a>Fix Set Quasi Order Generator</h2>
-
-<p><strong>Source:</strong> <a href="https://github.com/smanoharan/fix-set-quasi-order-generator/">https://github.com/smanoharan/fix-set-quasi-order-generator/</a></p>
-
-<p>A software package for generating all fix-orders of any given group (the abstract algebraic structure) and visualising the lattice of all fix-orders as a Hasse diagram. 
-A project developed for 2011/2012 summer research work.</p>
-
-<p><strong>Results are hosted at:</strong> <a href="http://www.math.waikato.ac.nz/%7Estokes/data/">http://www.math.waikato.ac.nz/~stokes/data/</a></p>
-
-<p></p>
-
-<h2>
-<a name="kinect-sign-language-learner" class="anchor" href="#kinect-sign-language-learner"><span class="octicon octicon-link"></span></a>Kinect Sign Language Learner</h2>
-
-<p><strong>Source:</strong> <a href="http://github.com/smanoharan/314Kinect/">http://github.com/smanoharan/314Kinect/</a></p>
-
-<p>A group project, developed for COMP314: Software Engineering Project.
-Allows instructors to teach signs to the software, which in turn can evaluate students on their performance of the same sign.</p>
-
-<p><strong>Use Case:</strong> </p>
-
-<ol>
-<li>Instructors train any sign (or any arbitrary gesture) by performing the sign a few (5 or so) times to the software (in record mode).</li>
-<li>The software then "learns" the sign (by modelling the sign via Hidden Markov Models) and saves it to disk.</li>
-<li>A student performs the learned sign to the software (in evaluate mode).</li>
-<li>The software gives feedback (a score out of 10) to the student, based on how well the student performance matched that of the instructor.</li>
-</ol><p><strong>Authors:</strong></p>
-
-<ul>
-<li>Sidd Arora (<a href="https://github.com/siddarora" class="user-mention">@siddarora</a>)</li>
-<li>William Lam (<a href="https://github.com/davanish" class="user-mention">@davanish</a>)</li>
-<li>Siva Manoharan (<a href="https://github.com/smanoharan" class="user-mention">@smanoharan</a>)</li>
-<li>Mark Will (<a href="https://github.com/maw41" class="user-mention">@maw41</a>)</li>
-</ul><hr><h1>
-<a name="2010" class="anchor" href="#2010"><span class="octicon octicon-link"></span></a>2010</h1>
-
-<p></p>
-
-<h2>
-<a name="top-gear-electrified" class="anchor" href="#top-gear-electrified"><span class="octicon octicon-link"></span></a>Top Gear Electrified</h2>
-
-<p><strong>Source:</strong> <a href="http://github.com/smanoharan/242XNA/">http://github.com/smanoharan/242XNA/</a></p>
-
-<p>A group project, developed for COMP242: Software Engineering Process.
-A multiplayer on-rails 3D car Racing simulation, developed in C#, using the XNA framework.</p>
-
-<p><strong>Features:</strong></p>
-
-<ul>
-<li>3D cars, tracks and realistic physics.</li>
-<li>Network and local-machine (split-screen) multiplayer support.</li>
-<li>Engine and background audio.</li>
-<li>Particle effects, Bloom Lighting, HD skybox.</li>
-</ul><p><strong>Authors:</strong></p>
-
-<ul>
-<li>Sidd Arora (<a href="https://github.com/siddarora" class="user-mention">@siddarora</a>)</li>
-<li>Siva Manoharan (<a href="https://github.com/smanoharan" class="user-mention">@smanoharan</a>)</li>
-<li>Adrian Shaw (<a href="https://github.com/ashawnz" class="user-mention">@ashawnz</a>)</li>
-<li>Martin Poot (<a href="http://nz.linkedin.com/in/martinpoot42">http://nz.linkedin.com/in/martinpoot42</a>)</li>
-</ul><hr><h1>
-<a name="2009" class="anchor" href="#2009"><span class="octicon octicon-link"></span></a>2009</h1>
-
-<p></p>
-
-<h2>
-<a name="3d-spacecraft-simulator" class="anchor" href="#3d-spacecraft-simulator"><span class="octicon octicon-link"></span></a>3D Spacecraft Simulator</h2>
-
-<p><strong>Source:</strong> Download <a href="https://dl.dropboxusercontent.com/u/58102064/SpaceSim.zip">here</a> (6 MB).</p>
-
-<p>Individual side project, developed for learning XNA and 3D graphics.
-A small number of spacecraft in a skybox, with frictionless collision physics.
-Built using C#, via the XNA framework. 
-Requires Visual Studio 2008, XNA 3.1 and Games for Windows Live.</p>
-
-<hr><h1>
-<a name="2008" class="anchor" href="#2008"><span class="octicon octicon-link"></span></a>2008</h1>
-
-<p></p>
-
-<h2>
-<a name="tactical-wargame" class="anchor" href="#tactical-wargame"><span class="octicon octicon-link"></span></a>Tactical Wargame</h2>
-
-<p><strong>Source:</strong> Download <a href="https://dl.dropboxusercontent.com/u/58102064/TacticalWargame.zip">here</a> (18 MB).</p>
-
-<p>A 2-player turn-based strategy game. 
-Each player controls a squad of four units and the aim is to gain territory by blocking in or destroying the units of the opposing player.</p>
-
-<p>Built using Visual Basic and the DirectX framework.
-Requires Windows XP (32-bit).</p>
+				<p>
+					MI (Multi-instance) learning is machine learning over MI data, where the instances are grouped together into labelled bags. 
+					An approach to handling MI data is propositionalisation, where each bag is converted into single feature vector, 
+					which can then be used with standard learning algorithms such as SVMs and Neural Networks.
+				</p>
+				<p>
+					The aim of this project is to explore adaptive propositionalisation, 
+					where the propositionalisation process adapts to the specific single instance learner being used. 
+					Application of this technique to the image classification problem have also been considered.
+				</p>
+				<p>
+					<strong>Download:</strong> 
+						<a href="content/final-report.pdf?raw=true">final report</a> (700 KB), 
+						<a href="content/final-pres.pdf?raw=true">presentation slides</a> (9 MB).
+				</p>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<div class="entry">
+			<h2>
+				<a name="turing-machine-verifier" class="anchor" href="#turing-machine-verifier"><span class="octicon octicon-link"></span></a>
+				Turing Machine Verifier
+			</h2>
+			<p>
+				<strong>Source:</strong> <a href="http://github.com/smanoharan/235-lab-verifier/">http://github.com/smanoharan/235-lab-verifier/</a>
+				<br />
+				<strong>Currently hosted at:</strong> <a href="http://comp235labs.herokuapp.com">http://comp235labs.herokuapp.com</a>
+			</p>
+			<div class="image">
+				<img class="popup" src="images/thumb/verify-start.png?raw=true">
+				<img class="popup" src="images/thumb/verify-result.png?raw=true">
+			</div>	
+			<div class="text">
+				<p>
+					An online automatic verifier for the Turing Machines in COMP235 Labs.
+					Written in Java using the <a href="http://www.playframework.com/">Play Framework</a>.
+					Individual side project, developed for use by the students of COMP235: Logic and Computation.
+				</p>
+				<p><strong>Supported features:</strong>
+				<ul>
+				<li>Allows testing each machine with an arbitrary number of test inputs.</li>
+				<li>Checks for Non-Determinism, Tape-OutOfBound errors and Alphabet constraints.</li>
+				<li>Shows an overall summary of results.</li>
+				</ul>
+				</p>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<h1 class="entry">
+			<a name="2011" class="anchor" href="#2011"><span class="octicon octicon-link"></span></a>
+			2011
+		</h1>	
+		
+		<div class="entry">
+			<h2>
+				<a name="fix-set-quasi-order-generator" class="anchor" href="#fix-set-quasi-order-generator"><span class="octicon octicon-link"></span></a>
+				Fix-Set Generator
+			</h2>
+			<p>
+				<strong>Source:</strong> <a href="https://github.com/smanoharan/fix-set-quasi-order-generator/">https://github.com/smanoharan/fix-set-quasi-order-generator/</a>
+				<br>
+				<strong>Results are hosted at:</strong> <a href="http://www.math.waikato.ac.nz/%7Estokes/data/">http://www.math.waikato.ac.nz/~stokes/data/</a>
+			</p>
+			<div class="image">
+				<img 
+					class="popup" src="images/thumb/fixset-g83.png?raw=true" 
+					alt="Visualisation of the fix-set lattice of the Dihedral group D8. The colours and line styles indicate various properties of each fix-order.">
+			</div>	
+			<div class="text">
+				<p>
+					A software package for generating all fix-orders of any given group (the abstract algebraic structure) and 
+					visualising the lattice of all fix-orders as a Hasse diagram. 
+					Publication under preparation.
+				</p>
+				<p>
+					A project developed for 2011/2012 summer research work.
+				</p>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<div class="entry">
+			<h2>
+				<a name="kinect-sign-language-learner" class="anchor" href="#kinect-sign-language-learner"><span class="octicon octicon-link"></span></a>
+				Sign Language Learner
+			</h2>
+			<p><strong>Source:</strong> <a href="http://github.com/smanoharan/314Kinect/">http://github.com/smanoharan/314Kinect/</a></p>
+			<div class="image">
+				<img class="popup" src="images/thumb/under-construction.png?raw=true">
+				<img class="popup" src="images/thumb/under-construction.png?raw=true">
+			</div>	
+			<div class="text">
+				<p>
+					A group project, developed for COMP314: Software Engineering Project.
+					Allows instructors to teach signs to the software, which in turn can evaluate students on their performance of the same sign.
+					Requires the Microsoft Kinect hardware.
+				</p>
+				<p><strong>Use Case:</strong> </p>
+				<ol>
+					<li>Instructors train any sign (or any arbitrary gesture) by performing the sign a few (5 or so) times to the software (in record mode).</li>
+					<li>The software then "learns" the sign (by modelling the sign via Hidden Markov Models) and saves it to disk.</li>
+					<li>A student performs the learned sign to the software (in evaluate mode).</li>
+					<li>The software gives feedback (a score out of 10) to the student, based on how well the student performance matched that of the instructor.</li>
+				</ol>
+				<p><strong>Authors:</strong></p>
+				<ul>
+					<li>Sidd Arora (<a href="https://github.com/siddarora" class="user-mention">@siddarora</a>)</li>
+					<li>William Lam (<a href="https://github.com/davanish" class="user-mention">@davanish</a>)</li>
+					<li>Siva Manoharan (<a href="https://github.com/smanoharan" class="user-mention">@smanoharan</a>)</li>
+					<li>Mark Will (<a href="https://github.com/maw41" class="user-mention">@maw41</a>)</li>
+				</ul>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<h1 class="entry">
+			<a name="2010" class="anchor" href="#2010"><span class="octicon octicon-link"></span></a>
+			2010
+		</h1>
+		
+		<div class="entry">
+			<h2>
+				<a name="top-gear-electrified" class="anchor" href="#top-gear-electrified"><span class="octicon octicon-link"></span></a>
+				Top Gear Electrified
+			</h2>
+			<p><strong>Source:</strong> <a href="http://github.com/smanoharan/242XNA/">http://github.com/smanoharan/242XNA/</a></p>		
+			<div class="image">
+				<img class="popup" src="images/thumb/tge-network.jpg?raw=true">
+				<img class="popup" src="images/thumb/tge-split.jpg?raw=true">
+			</div>	
+			<div class="text">
+				<p>
+					A group project, developed for COMP242: Software Engineering Process.
+					A multiplayer on-rails 3D car Racing simulation, developed in C#, using the XNA framework.
+				</p>
+				<p><strong>Features:</strong>
+					<ul>
+						<li>3D cars, tracks and realistic physics.</li>
+						<li>Network and local-machine (split-screen) multiplayer support.</li>
+						<li>Engine and background audio.</li>
+						<li>Particle effects, Bloom Lighting, HD skybox.</li>
+					</ul>
+				</p>
+				<p><strong>Authors:</strong>
+					<ul>
+					<li>Sidd Arora (<a href="https://github.com/siddarora" class="user-mention">@siddarora</a>)</li>
+					<li>Siva Manoharan (<a href="https://github.com/smanoharan" class="user-mention">@smanoharan</a>)</li>
+					<li>Adrian Shaw (<a href="https://github.com/ashawnz" class="user-mention">@ashawnz</a>)</li>
+					<li>Martin Poot (<a href="http://nz.linkedin.com/in/martinpoot42">http://nz.linkedin.com/in/martinpoot42</a>)</li>
+					</ul>
+				</p>			
+			</div>
+		</div>
+		
+		<hr>
+		
+		<h1 class="entry">
+			<a name="2009" class="anchor" href="#2009"><span class="octicon octicon-link"></span></a>
+			2009
+		</h1>
+		
+		<div class="entry">
+			<h2>
+				<a name="3d-spacecraft-simulator" class="anchor" href="#3d-spacecraft-simulator"><span class="octicon octicon-link"></span></a>
+				3D Spacecraft Simulator
+			</h2>
+			<p><strong>Source:</strong> Download <a href="https://dl.dropboxusercontent.com/u/58102064/SpaceSim.zip">here</a> (6 MB).</p>
+			<div class="image">
+				<img class="popup" src="images/thumb/spacesim.jpg?raw=true">
+			</div>	
+			<div class="text">
+				<p>
+					Individual side project, developed for learning XNA and 3D graphics.
+					A small number of spacecraft in a skybox, with frictionless collision physics.
+				</p>
+				<p>
+					Built using C#, via the XNA framework. 
+					Requires Visual Studio 2008, XNA 3.1 and Games for Windows Live.
+				</p>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<h1 class="entry">
+			<a name="2008" class="anchor" href="#2008"><span class="octicon octicon-link"></span></a>
+			2008
+		</h1>
+		
+		<div class="entry">
+			<h2>
+				<a name="tactical-wargame" class="anchor" href="#tactical-wargame"><span class="octicon octicon-link"></span></a>
+				Tactical Wargame
+			</h2>
+			<p><strong>Source:</strong> Download <a href="https://dl.dropboxusercontent.com/u/58102064/TacticalWargame.zip">here</a> (18 MB).</p>
+			<div class="image">
+				<img class="popup" src="images/thumb/tacwar-gameplay.jpg?raw=true">
+			</div>	
+			<div class="text">
+				<p>
+					A 2-player turn-based strategy game. 
+					Each player controls a squad of four units and the aim is to gain territory by blocking in or destroying the units of the opposing player.
+				</p>
+				<p>
+					Built using Visual Basic and the DirectX framework.
+					Requires Windows XP (32-bit).
+				</p>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<p>All projects are licensed under <a href="http://www.gnu.org/licenses/lgpl.html">LGPL</a> unless otherwise stated.</p>
       </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->  
   </body>
+  
 </html>
