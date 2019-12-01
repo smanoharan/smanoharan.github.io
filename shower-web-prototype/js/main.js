@@ -1,11 +1,49 @@
 import * as THREE from './build/three.module.js';
-//import {OrbitControls} from './examples/jsm/controls/OrbitControls.js';
 import CameraControls from './camera-controls/camera-controls.js';
 
 CameraControls.install( { THREE: THREE } );
 
-class Highlight {
+class Mouse {
+    constructor(target, controls) {
+        this.pos = new THREE.Vector2();
+        this.hasMouse = false;
+        this._target = target;
+        this._controls = controls;
+        this._enabled = true;
 
+        this.onMouseMove = this.onMouseMove.bind(this);
+        this.onMouseOut = this.onMouseOut.bind(this);
+        this.onControlStart = this.onControlStart.bind(this);
+        this.onControlEnd = this.onControlEnd.bind(this);
+
+        target.addEventListener('mousemove', this.onMouseMove, false);
+        target.addEventListener('mouseout', this.onMouseOut, false);
+        controls.addEventListener('controlstart', this.onControlStart);
+        controls.addEventListener('controlend', this.onControlEnd);
+    }
+
+    onMouseMove(e) {
+        if (this._enabled && this._target === e.target) {
+            const rect = e.target.getBoundingClientRect();
+            this.pos.x = ((e.clientX - rect.left) / this._target.clientWidth) * 2 - 1;
+            this.pos.y = - ((e.clientY - rect.top) / this._target.clientHeight) * 2 + 1;
+            this.hasMouse = true;
+        } else {
+            this.hasMouse = false;
+        }
+    }
+
+    onMouseOut() {
+        this.hasMouse = false;
+    }
+
+    onControlStart() {
+        this._enabled = false;
+    }
+
+    onControlEnd() {
+        this._enabled = true;
+    }
 }
 
 export class StructureScene {
@@ -25,9 +63,14 @@ export class StructureScene {
         this._controls.enableDamping = true;
         this._controls.dampingFactor = 0.1;
 
-        this._highlight = [];
-        this._hover = [];
+        this._raycaster = new THREE.Raycaster();
+        this._mouse = new Mouse(canvas, this._controls);
+        this._mouseHover = null;
 
+        this._highlight = [];
+
+        this._panels = [];
+        this._junctions = [];
         this._buildScene();
     }
 
@@ -43,14 +86,18 @@ export class StructureScene {
         camera.position.y = y;
         camera.position.z = z;
 
-        this._addCameraTransition(x, y, z);
+        this._addCameraTransition(x, y, z, [], true, true);
 
         return camera;
     }
 
-    _addCameraTransition(x, y, z, highlight=[]) {
+    _addCameraTransition(x, y, z, highlight=[], allowPanelHover=false, allowJunctionHover=false) {
         if (!Array.isArray(highlight)) highlight = [highlight]; // attempting to highlight a single object
-        this._transitions.push({x, y, z, highlight});
+        this._transitions.push({x, y, z, highlight, allowPanelHover, allowJunctionHover});
+
+        if (highlight.length === 1) {
+            highlight[0].sm_bestTransitionIndex = this._transitions.length - 1;
+        }
     }
 
     _buildScene() {
@@ -75,13 +122,14 @@ export class StructureScene {
         const p1 = this._addPanel(panelGeometry, panelColor, -x, 0, 0, r);
         const p2 = this._addPanel(panelGeometry, panelColor,  0, 0, x, 0);
         const p3 = this._addPanel(panelGeometry, panelColor,  x, 0, 0, r);
+        this._panels = [p1, p2, p3];
 
         const p = 4;
         const c = this._camera.position;
-        this._addCameraTransition(c.x, c.y, c.z, [p1, p2, p3]); // all panels
-        this._addCameraTransition(-p, 0, 0, p1);
-        this._addCameraTransition( 0, 0, p, p2);
-        this._addCameraTransition( p, 0, 0, p3);
+        this._addCameraTransition(c.x, c.y, c.z, [], true, false); // all panels
+        this._addCameraTransition(-p, 0, 0, p1, true, false);
+        this._addCameraTransition( 0, 0, p, p2, true, false);
+        this._addCameraTransition( p, 0, 0, p3, true, false);
 
         // junctions
         const junctionColor = panelColor;
@@ -89,12 +137,13 @@ export class StructureScene {
         const j2 = this._addJunction(junctionGeometry, junctionColor, -x, 0,  x, 0);
         const j3 = this._addJunction(junctionGeometry, junctionColor,  x, 0,  x, 0);
         const j4 = this._addJunction(junctionGeometry, junctionColor,  x, 0, -x, 0);
+        this._junctions = [j1, j2, j3, j4];
         const j = 3;
-        this._addCameraTransition(c.x, c.y, c.z, [j1, j2, j3, j4]); // all junctions
-        this._addCameraTransition(-j, 0, -j, j1);
-        this._addCameraTransition(-j, 0,  j, j2);
-        this._addCameraTransition( j, 0,  j, j3);
-        this._addCameraTransition( j, 0, -j, j4);
+        this._addCameraTransition(c.x, c.y, c.z, this._junctions, false, true); // all junctions
+        this._addCameraTransition(-j, 0, -j, j1, false, true);
+        this._addCameraTransition(-j, 0,  j, j2, false, true);
+        this._addCameraTransition( j, 0,  j, j3, false, true);
+        this._addCameraTransition( j, 0, -j, j4, false, true);
     }
 
     _addLight(x, y, z, color, intensity) {
@@ -115,6 +164,7 @@ export class StructureScene {
         panel.rotation.y = rot;
 
         panel.sm_wasVisible = true;
+        panel.sm_allowHover = true;
 
         return panel;
     }
@@ -129,15 +179,17 @@ export class StructureScene {
         junction.position.z = z;
         junction.rotation.y = rot;
 
-        junction.visible = false; // hidden until selected
+        junction.material.visible = false; // hidden until selected
         junction.sm_wasVisible = false;
+        junction.sm_allowHover = true;
 
         return junction;
     }
 
     _updateEmissive(mesh) {
-        const e = mesh.sm_highlighted ? 0xaa8844 : (mesh.sm_hover ? 0x554422 : 0x0);
-        mesh.visible = e > 0 ? true : mesh.sm_wasVisible;
+        const hover = mesh.sm_hover || mesh === this._mouseHover;
+        const e = mesh.sm_highlighted ? 0xaa8844 : (hover ? 0x554422 : 0x0);
+        mesh.material.visible = e > 0 ? true : mesh.sm_wasVisible;
         mesh.material.emissive.setHex(e);
     }
 
@@ -158,18 +210,48 @@ export class StructureScene {
     }
 
     transition(index) {
-        const {x, y, z, highlight} = this._transitions[index];
+        const {x, y, z, highlight, allowPanelHover, allowJunctionHover} = this._transitions[index];
         this._controls.setLookAt(x, y, z, 0, 0, 0, true);
         this._setHighlight(highlight);
+
+        for (let i=0; i<this._panels.length; i++) {
+            this._panels[i].sm_allowHover = allowPanelHover;
+        }
+        for (let i=0; i<this._junctions.length; i++) {
+            this._junctions[i].sm_allowHover = allowJunctionHover;
+        }
     }
 
     hover(index, enable) {
-        const {x, y, z, highlight} = this._transitions[index];
+        const {highlight} = this._transitions[index];
         for (let i=0; i<highlight.length; i++) {
             const h = highlight[i];
             h.sm_hover = enable;
             this._updateEmissive(h);
         }
+    }
+
+    _setMouseHover(mesh) {
+        if (mesh !== this._mouseHover) {
+            const old = this._mouseHover;
+            this._mouseHover = mesh;
+            if (old) this._updateEmissive(old);
+            if (mesh) this._updateEmissive(mesh);
+        }
+    }
+
+    _hoverObject() {
+        if (this._mouse.hasMouse) {
+            this._raycaster.setFromCamera(this._mouse.pos, this._camera);
+            const intersects = this._raycaster.intersectObjects(this.scene.children);
+            for (let i=0; i<intersects.length; i++) {
+                const i = intersects[0].object;
+                if (i.sm_allowHover) {
+                    return i;
+                }
+            }
+        }
+        return null;
     }
 
     render() {
@@ -179,8 +261,9 @@ export class StructureScene {
             this._camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
             this._camera.updateProjectionMatrix();
         }
-
         this._controls.update(delta);
+
+        this._setMouseHover(this._hoverObject());
         this._renderer.render(this.scene, this._camera);
         requestAnimationFrame(this.render);
     }
@@ -194,5 +277,17 @@ export class StructureScene {
             this._renderer.setSize(width, height, false);
         }
         return needResize;
+    }
+
+    bestTransition() {
+        if (this._mouseHover) {
+            const t = this._mouseHover.sm_bestTransitionIndex;
+            if (t) {
+                this.transition(t);
+                return t;
+            }
+
+        }
+        return null;
     }
 }

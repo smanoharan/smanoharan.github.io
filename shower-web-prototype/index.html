@@ -90,29 +90,30 @@
         scene.render();
 
         // init jsTree
+        const nodes = [
+            { 'index': 0, 'id': 'overall', 'parent': '#', 'text': 'Shower #126', 'state': { 'opened': true } },
+            { 'index': 1, 'id': 'pnl-overall', 'parent': 'overall', 'text': 'Panels', 'state': { 'opened': true } },
+            { 'index': 2, 'id': 'pnl-1', 'parent': 'pnl-overall', 'text': 'P1' },
+            { 'index': 3, 'id': 'pnl-2', 'parent': 'pnl-overall', 'text': 'P2' },
+            { 'index': 4, 'id': 'pnl-3', 'parent': 'pnl-overall', 'text': 'P3' },
+            { 'index': 5, 'id': 'jun-overall', 'parent': 'overall', 'text': 'Junctions', 'state': { 'opened': true } },
+            { 'index': 6, 'id': 'jun-1', 'parent': 'jun-overall', 'text': 'J1' },
+            { 'index': 7, 'id': 'jun-2', 'parent': 'jun-overall', 'text': 'J2' },
+            { 'index': 8, 'id': 'jun-3', 'parent': 'jun-overall', 'text': 'J3' },
+            { 'index': 9, 'id': 'jun-4', 'parent': 'jun-overall', 'text': 'J4' },
+        ];
         const nav = $('#nav');
         nav.jstree({
             'core' : {
                 'themes' : { 'variant' : 'large' },
-                'data': [
-                    { 't_idx': 0, 'id': 'overall', 'parent': '#', 'text': 'Shower #126', 'state': { 'opened': true } },
-                    { 't_idx': 1, 'id': 'pnl-overall', 'parent': 'overall', 'text': 'Panels', 'state': { 'opened': true } },
-                    { 't_idx': 2, 'id': 'pnl-1', 'parent': 'pnl-overall', 'text': 'P1' },
-                    { 't_idx': 3, 'id': 'pnl-2', 'parent': 'pnl-overall', 'text': 'P2' },
-                    { 't_idx': 4, 'id': 'pnl-3', 'parent': 'pnl-overall', 'text': 'P3' },
-                    { 't_idx': 5, 'id': 'jun-overall', 'parent': 'overall', 'text': 'Junctions', 'state': { 'opened': true } },
-                    { 't_idx': 6, 'id': 'jun-1', 'parent': 'jun-overall', 'text': 'J1' },
-                    { 't_idx': 7, 'id': 'jun-2', 'parent': 'jun-overall', 'text': 'J2' },
-                    { 't_idx': 8, 'id': 'jun-3', 'parent': 'jun-overall', 'text': 'J3' },
-                    { 't_idx': 9, 'id': 'jun-4', 'parent': 'jun-overall', 'text': 'J4' },
-                ]
+                'data': nodes
             },
             'plugins' : [ 'wholerow' ]
         });
         nav.on("select_node.jstree", function(e, data) {
             if (data !== null && data.node !== null && data.node.original !== null) {
                 const node = data.node.original;
-                scene.transition(node.t_idx);
+                scene.transition(node.index);
                 editText.innerHTML = "Example Text for " + node.text;
                 editSelect.innerHTML = "Example dropdown for " + node.text;
             }
@@ -120,15 +121,22 @@
         nav.on("hover_node.jstree", function(e, data) {
             if (data !== null && data.node !== null && data.node.original !== null) {
                 const node = data.node.original;
-                scene.hover(node.t_idx, true);
+                scene.hover(node.index, true);
             }
         });
         nav.on("dehover_node.jstree", function(e, data) {
             if (data !== null && data.node !== null && data.node.original !== null) {
                 const node = data.node.original;
-                scene.hover(node.t_idx, false);
+                scene.hover(node.index, false);
             }
         });
+        $('#view').on("click", function(e) {
+            const t = scene.bestTransition();
+            if (t !== null && t >= 0 && t < nodes.length) {
+                nav.jstree('deselect_all');
+                nav.jstree('select_node', nodes[t].id);
+            }
+        })
 
     </script>
 </body>
