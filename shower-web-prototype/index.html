@@ -1,0 +1,135 @@
+<html>
+<head>
+    <title>Shower-Web UI Prototype</title>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            color: #111;
+            background-color: #eee;
+        }
+
+        #nav {
+            width: 250px;
+        }
+
+        #detail {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        #view {
+            display: block;
+            flex-grow: 1;
+        }
+
+        #edit {
+            padding: 20px 15px 15px 0;
+        }
+
+        #editHeader {
+            font-weight: bold;
+        }
+    </style>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- jsTree.com treeList (requires jQuery) -->
+    <link rel="stylesheet" href="jsTree/themes/default/style.min.css" />
+    <script src="jsTree/jquery.min.js"></script>
+    <script src="jsTree/jstree.min.js"></script>
+
+</head>
+<body>
+    <div id="container">
+        <div id="nav"></div>
+
+        <div id="detail">
+            <canvas id="view"></canvas>
+            <div id="edit">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" id="editText">Example Text for Shower #126</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1" id="editSelect">Example dropdown for Shower #126</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { StructureScene } from './js/main.js';
+
+        const editText = document.querySelector("#editText");
+        const editSelect = document.querySelector("#editSelect");
+
+        const canvas = document.querySelector('#view');
+        const scene = new StructureScene(canvas);
+        scene.render();
+
+        // init jsTree
+        const nav = $('#nav');
+        nav.jstree({
+            'core' : {
+                'themes' : { 'variant' : 'large' },
+                'data': [
+                    { 't_idx': 0, 'id': 'overall', 'parent': '#', 'text': 'Shower #126', 'state': { 'opened': true } },
+                    { 't_idx': 1, 'id': 'pnl-overall', 'parent': 'overall', 'text': 'Panels', 'state': { 'opened': true } },
+                    { 't_idx': 2, 'id': 'pnl-1', 'parent': 'pnl-overall', 'text': 'P1' },
+                    { 't_idx': 3, 'id': 'pnl-2', 'parent': 'pnl-overall', 'text': 'P2' },
+                    { 't_idx': 4, 'id': 'pnl-3', 'parent': 'pnl-overall', 'text': 'P3' },
+                    { 't_idx': 5, 'id': 'jun-overall', 'parent': 'overall', 'text': 'Junctions', 'state': { 'opened': true } },
+                    { 't_idx': 6, 'id': 'jun-1', 'parent': 'jun-overall', 'text': 'J1' },
+                    { 't_idx': 7, 'id': 'jun-2', 'parent': 'jun-overall', 'text': 'J2' },
+                    { 't_idx': 8, 'id': 'jun-3', 'parent': 'jun-overall', 'text': 'J3' },
+                    { 't_idx': 9, 'id': 'jun-4', 'parent': 'jun-overall', 'text': 'J4' },
+                ]
+            },
+            'plugins' : [ 'wholerow' ]
+        });
+        nav.on("select_node.jstree", function(e, data) {
+            if (data !== null && data.node !== null && data.node.original !== null) {
+                const node = data.node.original;
+                scene.transition(node.t_idx);
+                editText.innerHTML = "Example Text for " + node.text;
+                editSelect.innerHTML = "Example dropdown for " + node.text;
+            }
+        });
+        nav.on("hover_node.jstree", function(e, data) {
+            if (data !== null && data.node !== null && data.node.original !== null) {
+                const node = data.node.original;
+                scene.hover(node.t_idx, true);
+            }
+        });
+        nav.on("dehover_node.jstree", function(e, data) {
+            if (data !== null && data.node !== null && data.node.original !== null) {
+                const node = data.node.original;
+                scene.hover(node.t_idx, false);
+            }
+        });
+
+    </script>
+</body>
+</html>
